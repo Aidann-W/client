@@ -4,7 +4,7 @@ export function useGet(id: number) {
     const [data, setData] = useState<{ id: number; email: string; pass: string } | null>(null);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/users/${id}`)
+        fetch(`https://server-jmkv.onrender.com/users/${id}`)
             .then(r => r.json())
             .then(setData);
     }, [id]);
@@ -16,7 +16,7 @@ export function usePost(email: string, pass: string, trigger: boolean, reset: ()
     useEffect(() => {
         if (!trigger) return;
 
-        fetch('http://localhost:3000/users', {
+        fetch('https://server-jmkv.onrender.com/users', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, pass }),
@@ -28,7 +28,7 @@ export function usePut(newEmail: string, newPass: string, id: number, trigger: b
     useEffect(() => {
         if (!trigger) return;
 
-        fetch(`http://localhost:3000/users/${id}`, {
+        fetch(`https://server-jmkv.onrender.com/users/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ newEmail, newPass }),
@@ -40,7 +40,7 @@ export function useDelete(id: number, trigger: boolean, reset: () => void) {
     useEffect(() => {
         if (!trigger) return;
 
-        fetch(`http://localhost:3000/users/${id}`, {
+        fetch(`https://server-jmkv.onrender.com/users/${id}`, {
             method: 'DELETE',
         }).finally(reset);
     }, [id, trigger]);
